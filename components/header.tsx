@@ -1,10 +1,8 @@
-"use client";
-
-import { useSession, signOut } from "next-auth/react";
+import { auth, signOut } from "@/auth";
 import Link from "next/link";
 
-export default function Header() {
-    const { data: session } = useSession();
+export default async function Header() {
+    const session = await auth();
 
     return (
         <header className="w-full bg-transparent text-white">
@@ -21,9 +19,16 @@ export default function Header() {
                     </Link>
 
                     {session && session.user ? (
-                        <button className="px-4 py-1.5 rounded-full bg-orange-500 text-black font-semibold hover:bg-orange-400 transition-colors cursor-pointer" onClick={async () => await signOut()}>
-                            signout
-                        </button>
+                        <form
+                            action={async () => {
+                                "use server";
+                                await signOut();
+                            }}
+                        >
+                            <button className="px-4 py-1.5 rounded-full bg-orange-500 text-black font-semibold hover:bg-orange-400 transition-colors cursor-pointer" type="submit">
+                                signout
+                            </button>
+                        </form>
                     ) : (
                         <Link href="/auth" className="px-4 py-1.5 rounded-full bg-orange-500 text-black font-semibold hover:bg-orange-400 transition-colors">
                             Register
