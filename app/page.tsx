@@ -1,35 +1,7 @@
+import { COURSES } from "@/data/courses";
 import Link from "next/link";
 
-export const COURSES = [
-    {
-        id: "entrepreneurship-bootcamp",
-        title: "Entrepreneurship Bootcamp",
-        duration: "8 weeks",
-        price: "Free",
-        short: "Hands-on training for aspiring entrepreneurs.",
-        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac varius mauris, sed hendrerit ex. Ut sit amet metus id risus facilisis porta.",
-    },
-    {
-        id: "startup-fundamentals",
-        title: "Startup Fundamentals",
-        duration: "6 weeks",
-        price: "₹1499",
-        short: "A course on business models, funding, and pitching.",
-        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse porttitor est sit amet interdum varius, sem odio convallis turpis.",
-    },
-    {
-        id: "innovation-lab",
-        title: "Innovation Lab",
-        duration: "4 weeks",
-        price: "Free",
-        short: "Fostering creativity through real-world projects.",
-        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tristique sapien at ligula tempus, ac facilisis urna pharetra.",
-    },
-];
-
 export default function Home() {
-    // const navigate = useNavigate();
-
     return (
         <main className="max-w-6xl mx-auto p-6 space-y-16 bg-transparent text-white min-h-screen">
             {/* HERO SECTION */}
@@ -39,10 +11,10 @@ export default function Home() {
                     <p className="text-gray-300 mb-8 leading-relaxed">E-Cell IIT BHU nurtures entrepreneurial spirit by organizing bootcamps, workshops, and courses designed to help students turn their ideas into impactful startups.</p>
 
                     <div className="flex gap-4">
-                        <Link href="/register" className="px-6 py-2.5 bg-orange-500 text-black font-semibold rounded-full hover:bg-orange-400 transition-colors">
+                        <Link href="/auth" className="px-6 py-2.5 bg-orange-500 text-black font-semibold rounded-full hover:bg-orange-400 transition-colors">
                             Join Now
                         </Link>
-                        <Link href="/login" className="px-6 py-2.5 border border-orange-500 text-orange-500 font-semibold rounded-full hover:bg-orange-500 hover:text-black transition-colors">
+                        <Link href="/courses" className="px-6 py-2.5 border border-orange-500 text-orange-500 font-semibold rounded-full hover:bg-orange-500 hover:text-black transition-colors">
                             Explore Courses
                         </Link>
                     </div>

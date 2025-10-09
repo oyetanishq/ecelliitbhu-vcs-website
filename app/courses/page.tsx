@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { COURSES } from "@/app/page";
+import { COURSES } from "@/data/courses";
 
 export default function Courses() {
     return (
