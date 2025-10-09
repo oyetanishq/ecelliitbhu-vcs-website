@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/app/components/header";
-import { Providers } from "./providers";
+import Header from "@/components/header";
 
 export const metadata: Metadata = {
     title: "ECELL IITBHU VCS",
@@ -23,10 +22,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-transparent text-white`}>
-                <Providers>
-                    <Header />
-                    {children}
-                </Providers>
+                <Header />
+                {children}
             </body>
         </html>
     );

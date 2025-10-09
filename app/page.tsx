@@ -8,7 +8,9 @@ export default function Home() {
             <section className="grid md:grid-cols-2 gap-10 items-center pt-10">
                 <div>
                     <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-orange-500">Empowering Innovators of Tomorrow</h1>
-                    <p className="text-gray-300 mb-8 leading-relaxed">E-Cell IIT BHU nurtures entrepreneurial spirit by organizing bootcamps, workshops, and courses designed to help students turn their ideas into impactful startups.</p>
+                    <p className="text-gray-300 mb-8 leading-relaxed">
+                        E-Cell IIT BHU nurtures entrepreneurial spirit by organizing bootcamps, workshops, and courses designed to help students turn their ideas into impactful startups.
+                    </p>
 
                     <div className="flex gap-4">
                         <Link href="/auth" className="px-6 py-2.5 bg-orange-500 text-black font-semibold rounded-full hover:bg-orange-400 transition-colors">
