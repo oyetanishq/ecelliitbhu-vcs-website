@@ -17,8 +17,8 @@ export default function Courses() {
                                 {c.duration} • {c.price}
                             </span>
 
-                            <Link href="/register" className="px-4 py-1.5 bg-orange-500 text-black font-semibold rounded-full hover:bg-orange-400 transition-colors">
-                                Enroll
+                            <Link href={"/courses/" + c.id} className="px-4 py-1.5 bg-orange-500 text-black font-semibold rounded-full hover:bg-orange-400 transition-colors">
+                                View
                             </Link>
                         </div>
                     </div>
