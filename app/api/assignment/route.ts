@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
         const { data: signedData, error: signedError } = await supabase.storage.from("course-assignment").createSignedUrl(`uploads/${fileName}`, 3600); // 3600 = 1 hour
         if (signedError) return NextResponse.json({ error: signedError.message }, { status: 500 });
 
-        return NextResponse.json({ url: signedData.signedUrl });
+        return NextResponse.json({ url: signedData.signedUrl }, {status: 201});
     } catch (err) {
         console.error(err);
         return NextResponse.json({ error: "Failed to upload" }, { status: 500 });
