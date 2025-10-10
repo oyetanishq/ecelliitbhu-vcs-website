@@ -1,5 +1,6 @@
 import { COURSES, type Course } from "@/data/courses";
+import { NextResponse } from "next/server";
 
-export async function GET(): Promise<Course[]> {
-    return Response.json(COURSES) as never as Course[];
+export async function GET(): Promise<NextResponse<Course[]>> {
+    return NextResponse.json(COURSES);
 }
