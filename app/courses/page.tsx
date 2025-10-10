@@ -1,13 +1,16 @@
+import { Course } from "@/data/courses";
 import Link from "next/link";
-import { COURSES } from "@/data/courses";
 
-export default function Courses() {
+export default async function Courses() {
+    const res = await fetch("http://localhost:3000/api/courses");
+    const courses = (await res.json()) as Course[];
+
     return (
         <main className="max-w-6xl mx-auto p-6 space-y-10 bg-transparent text-white min-h-screen">
             <h2 className="text-3xl font-bold text-orange-500 border-b-2 border-orange-600 pb-2">Courses</h2>
 
             <div className="grid md:grid-cols-2 gap-8">
-                {COURSES.map((c) => (
+                {courses.map((c) => (
                     <div key={c.id} id={c.id} className="border border-orange-600 rounded-xl p-5 bg-zinc-900 hover:shadow-lg hover:shadow-orange-500/20 transition">
                         <h3 className="text-xl font-semibold mb-2 text-orange-400">{c.title}</h3>
                         <p className="text-gray-300 mb-4">{c.details}</p>
