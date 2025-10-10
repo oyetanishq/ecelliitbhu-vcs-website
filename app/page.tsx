@@ -6,58 +6,68 @@ export default async function Home() {
     const courses = (await res.json()) as Course[];
 
     return (
-        <main className="max-w-6xl mx-auto p-6 space-y-16 bg-transparent text-white min-h-screen">
-            {/* HERO SECTION */}
-            <section className="grid md:grid-cols-2 gap-10 items-center pt-10">
-                <div>
-                    <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-orange-500">Empowering Innovators of Tomorrow</h1>
-                    <p className="text-gray-300 mb-8 leading-relaxed">
-                        E-Cell IIT BHU nurtures entrepreneurial spirit by organizing bootcamps, workshops, and courses designed to help students turn their ideas into impactful startups.
-                    </p>
+        <main className="min-h-screen bg-cover bg-center bg-fixed text-white" style={{ backgroundImage: "url('/e-cell.jpeg')" }}>
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/70"></div>
 
-                    <div className="flex gap-4">
-                        <Link href="/auth" className="px-6 py-2.5 bg-orange-500 text-black font-semibold rounded-full hover:bg-orange-400 transition-colors">
-                            Join Now
-                        </Link>
-                        <Link href="/courses" className="px-6 py-2.5 border border-orange-500 text-orange-500 font-semibold rounded-full hover:bg-orange-500 hover:text-black transition-colors">
-                            Explore Courses
-                        </Link>
+            <div className="relative max-w-6xl mx-auto p-6 space-y-16 pt-28">
+                {/* Hero Section */}
+                <section className="grid md:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-[#FF8C00] leading-tight">Empowering Innovators of Tomorrow</h1>
+                        <p className="text-gray-300 mb-8 text-lg leading-relaxed">
+                            E-Cell IIT BHU nurtures entrepreneurial spirit by organizing bootcamps, workshops, and courses designed to help students turn their ideas into impactful startups.
+                        </p>
+
+                        <div className="flex gap-4 flex-wrap">
+                            <Link href="/auth" className="px-6 py-3 bg-[#FF8C00] text-black font-semibold rounded-full hover:bg-[#FFA500] active:scale-95 transition-all shadow-sm">
+                                Join Now
+                            </Link>
+                            <Link
+                                href="/courses"
+                                className="px-6 py-3 border border-[#FF8C00] text-[#FF8C00] font-semibold rounded-full hover:bg-[#FF8C00] hover:text-black active:scale-95 transition-all shadow-sm"
+                            >
+                                Explore Courses
+                            </Link>
+                        </div>
                     </div>
-                </div>
 
-                <div className="bg-zinc-900 border border-orange-600 p-6 rounded-2xl shadow-lg shadow-orange-500/10">
-                    <h3 className="text-lg font-semibold mb-4 text-orange-400">Why E-Cell IIT BHU?</h3>
-                    <ul className="list-disc list-inside text-gray-300 space-y-2">
-                        <li>Learn from top founders & mentors</li>
-                        <li>Hands-on startup building experience</li>
-                        <li>Access to exclusive networking events</li>
-                    </ul>
-                </div>
-            </section>
+                    <div className="bg-zinc-900/80 backdrop-blur-md p-6 rounded-2xl border border-zinc-800 shadow-lg shadow-black/20">
+                        <h3 className="text-xl font-semibold mb-4 text-[#FF8C00]">Why E-Cell IIT BHU?</h3>
+                        <ul className="list-disc list-inside text-gray-300 space-y-2">
+                            <li>Learn from top founders & mentors</li>
+                            <li>Hands-on startup building experience</li>
+                            <li>Access to exclusive networking events</li>
+                        </ul>
+                    </div>
+                </section>
 
-            {/* POPULAR COURSES SECTION */}
-            <section>
-                <h2 className="text-2xl font-bold mb-8 text-orange-500 border-b-2 border-orange-600 pb-2">Popular Courses</h2>
+                {/* Popular Courses */}
+                <section>
+                    <h2 className="text-3xl font-bold mb-8 text-[#FF8C00] border-b border-[#FF8C00] pb-2 text-center md:text-left">Popular Courses</h2>
 
-                <div className="grid md:grid-cols-3 gap-8">
-                    {courses.map((c) => (
-                        <article key={c.id} className="p-6 border border-orange-600 rounded-2xl bg-zinc-900 hover:shadow-lg hover:shadow-orange-500/20 transition">
-                            <h4 className="font-semibold text-lg mb-2 text-orange-400">{c.title}</h4>
-                            <p className="text-sm text-gray-300 mb-4">{c.short}</p>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {courses.map((c) => (
+                            <article
+                                key={c.id}
+                                className="p-6 border border-zinc-800 rounded-2xl bg-zinc-900/80 backdrop-blur-md hover:border-[#FF8C00]/70 hover:shadow-lg hover:shadow-[#FF8C00]/20 transition-all duration-300"
+                            >
+                                <h4 className="font-semibold text-lg mb-2 text-[#FF8C00] group-hover:text-[#FFA500]">{c.title}</h4>
+                                <p className="text-gray-300 mb-4">{c.short}</p>
+                                <div className="flex items-center justify-between text-sm text-gray-400">
+                                    {c.duration}
+                                    <Link href={`/courses#${c.id}`} className="text-[#FF8C00] hover:text-[#FFA500] transition-colors">
+                                        Details →
+                                    </Link>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </section>
 
-                            <div className="flex items-center justify-between text-sm">
-                                <span className="text-gray-400">{c.duration}</span>
-                                <Link href={`/courses#${c.id}`} className="text-orange-400 hover:text-orange-300 transition-colors">
-                                    Details →
-                                </Link>
-                            </div>
-                        </article>
-                    ))}
-                </div>
-            </section>
-
-            {/* FOOTER */}
-            <footer className="text-center text-sm text-gray-500 py-10 border-t border-orange-600">© {new Date().getFullYear()} E-Cell IIT BHU</footer>
+                {/* Footer */}
+                <footer className="text-center text-sm text-gray-500 py-10 border-t border-zinc-800 relative">© {new Date().getFullYear()} E-Cell IIT BHU</footer>
+            </div>
         </main>
     );
 }

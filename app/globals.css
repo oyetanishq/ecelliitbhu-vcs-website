@@ -1,22 +1,31 @@
 @import "tailwindcss";
 
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: #0a0a0a;
+    --foreground: #e5e5e5;
+    --accent: #e6e0db;
+    --overlay: rgba(0, 0, 0, 0.6);
+    --font-sans: "Inter", sans-serif;
+    --font-mono: "Fira Code", monospace;
 }
 
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+    --font-sans: var(--font-sans);
+    --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
     :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
+        --background: #ffffff;
+        --foreground: #171717;
+        --overlay: rgba(255, 255, 255, 0.2);
     }
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -25,12 +34,29 @@ body {
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    position: relative;
 }
 
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: var(--overlay);
     z-index: -1;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 9999px;
+}
+
+a {
+    color: var(--accent);
+    transition: color 0.2s ease;
+}
+a:hover {
+    color: #01070e;
 }
