@@ -43,16 +43,38 @@ export default function AssignmentSubmission({ course_id }: AssignmentSubmission
     };
 
     return (
-        <div>
-            {uploading && <span>uploading...</span>}
-            {error && <span>error: {error}</span>}
-            {submissionLink && <span>submissionLink: {submissionLink}</span>}
-            <form onSubmit={handleForm}>
-                <input type="file" name="assignment_file" required multiple={false} />
-                <button type="submit" className="px-4 py-2 border bg-orange-200 text-black hover:bg-orange-600 cursor-pointer duration-200 active:bg-orange-200">
-                    upload assignment
-                </button>
-            </form>
-        </div>
+        // <div>
+        //     {uploading && <span>uploading...</span>}
+        //     {error && <span>error: {error}</span>}
+        //     {submissionLink && <span>submissionLink: {submissionLink}</span>}
+        //     <form onSubmit={handleForm}>
+        //         <input type="file" name="assignment_file" required multiple={false} />
+        //         <button type="submit" className="px-4 py-2 border bg-orange-200 text-black hover:bg-orange-600 cursor-pointer duration-200 active:bg-orange-200">
+        //             upload assignment
+        //         </button>
+        //     </form>
+        // </div>
+        
+    <div className="bg-zinc-900/80 backdrop-blur-md p-6 rounded-2xl border border-zinc-800 shadow-lg space-y-4 mt-4 text-white">
+      {uploading && <span>Uploading...</span>}
+      {error && <span className="text-red-500">Error: {error}</span>}
+      {submissionLink && <span className="text-green-400">Submitted: <a href={submissionLink} className="underline">{submissionLink}</a></span>}
+
+      <form onSubmit={handleForm} className="space-y-4">
+        <input
+          type="file"
+          name="assignment_file"
+          required
+          multiple={false}
+          className="w-full text-white file:bg-[#FF8C00] file:text-black file:rounded-full file:px-4 file:py-2 file:cursor-pointer hover:file:bg-[#FFA500] transition-all"
+        />
+        <button
+          type="submit"
+          className="px-6 py-2 rounded-full bg-[#FF8C00] text-black font-semibold hover:bg-[#FFA500] active:scale-95 transition-all shadow-sm"
+        >
+          Upload Assignment
+        </button>
+      </form>
+    </div>
     );
 }
