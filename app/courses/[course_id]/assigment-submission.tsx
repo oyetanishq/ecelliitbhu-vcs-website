@@ -34,6 +34,7 @@ export default function AssignmentSubmission({ course_id }: AssignmentSubmission
                 if (success) {
                     setSubmissionLink(data.url);
                     setError("");
+                    window.location.reload();
                 } else {
                     setError(data.error);
                     setSubmissionLink("");
