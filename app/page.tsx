@@ -1,7 +1,10 @@
-import { COURSES } from "@/data/courses";
+import { type Course } from "@/data/courses";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+    const res = await fetch("http://localhost:3000/api/courses");
+    const courses = (await res.json()) as Course[];
+
     return (
         <main className="max-w-6xl mx-auto p-6 space-y-16 bg-transparent text-white min-h-screen">
             {/* HERO SECTION */}
@@ -37,7 +40,7 @@ export default function Home() {
                 <h2 className="text-2xl font-bold mb-8 text-orange-500 border-b-2 border-orange-600 pb-2">Popular Courses</h2>
 
                 <div className="grid md:grid-cols-3 gap-8">
-                    {COURSES.map((c) => (
+                    {courses.map((c) => (
                         <article key={c.id} className="p-6 border border-orange-600 rounded-2xl bg-zinc-900 hover:shadow-lg hover:shadow-orange-500/20 transition">
                             <h4 className="font-semibold text-lg mb-2 text-orange-400">{c.title}</h4>
                             <p className="text-sm text-gray-300 mb-4">{c.short}</p>

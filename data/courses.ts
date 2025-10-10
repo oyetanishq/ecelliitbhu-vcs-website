@@ -1,4 +1,13 @@
-export const COURSES = [
+export interface Course {
+    id: string;
+    title: string;
+    duration: string;
+    price: string;
+    short: string;
+    details: string;
+}
+
+export const COURSES: Course[] = [
     {
         id: "entrepreneurship-bootcamp",
         title: "Entrepreneurship Bootcamp",

@@ -1,14 +1,5 @@
 import { COURSES } from "@/data/courses";
 
-export interface Course {
-    id: string;
-    title: string;
-    duration: string;
-    price: string;
-    short: string;
-    details: string;
-}
-
 interface Params {
     id: string;
 }

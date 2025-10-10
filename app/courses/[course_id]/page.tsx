@@ -1,4 +1,4 @@
-import { Course } from "@/app/api/courses/route";
+import { type Course } from "@/data/courses";
 import { auth } from "@/auth";
 import AssignmentSubmission from "./assigment-submission";
 
