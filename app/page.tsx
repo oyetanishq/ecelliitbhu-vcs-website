@@ -1,10 +1,6 @@
-import { type Course } from "@/data/courses";
 import Link from "next/link";
 
 export default async function Home() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/courses`);
-    const courses = (await res.json()) as Course[];
-
     return (
         <main className="min-h-screen bg-cover bg-center bg-fixed text-white" style={{ backgroundImage: "url('/e-cell.jpeg')" }}>
             {/* Overlay */}
@@ -47,7 +43,7 @@ export default async function Home() {
                     <h2 className="text-3xl font-bold mb-8 text-[#FF8C00] border-b border-[#FF8C00] pb-2 text-center md:text-left">Popular Courses</h2>
 
                     <div className="grid md:grid-cols-3 gap-8">
-                        {courses.map((c) => (
+                        {/* {courses.map((c) => (
                             <article
                                 key={c.id}
                                 className="p-6 border border-zinc-800 rounded-2xl bg-zinc-900/80 backdrop-blur-md hover:border-[#FF8C00]/70 hover:shadow-lg hover:shadow-[#FF8C00]/20 transition-all duration-300"
@@ -61,7 +57,7 @@ export default async function Home() {
                                     </Link>
                                 </div>
                             </article>
-                        ))}
+                        ))} */}
                     </div>
                 </section>
 

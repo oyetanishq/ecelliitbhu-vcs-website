@@ -14,8 +14,8 @@ export default async function Header() {
 
                 {/* Navigation */}
                 <nav className="flex gap-6 text-sm font-medium items-center">
-                    <Link href="/courses" className="px-4 py-2 rounded-full bg-zinc-900/70 hover:bg-[#FF8C00] hover:text-black transition-all shadow-sm">
-                        Courses
+                    <Link href="/course" className="px-4 py-2 rounded-full bg-zinc-900/70 hover:bg-[#FF8C00] hover:text-black transition-all shadow-sm">
+                        Course
                     </Link>
 
                     {session && session.user ? (
