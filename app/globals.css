@@ -92,6 +92,15 @@ a:hover {
 .logo.react:hover {
     filter: drop-shadow(0 0 2em #61dafbaa);
 }
+/* Hide scrollbar for horizontal scroll areas */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 
 @layer base {
     :root {
