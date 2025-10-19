@@ -6,7 +6,7 @@ export default async function Home() {
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/70"></div>
 
-            <div className="relative max-w-6xl mx-auto p-6 space-y-16 pt-28">
+            <div className="relative max-w-6xl mx-auto p-6 space-y-16">
                 {/* Hero Section */}
                 <section className="grid md:grid-cols-2 gap-10 items-center">
                     <div>

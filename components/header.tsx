@@ -5,7 +5,7 @@ export default async function Header() {
     const session = await auth();
 
     return (
-        <header className="fixed top-0 w-full bg-black/80 backdrop-blur-md text-white border-b border-[#FF8C00] z-50">
+        <header className="w-full bg-black/80 backdrop-blur-md text-white border-b border-[#FF8C00] z-50">
             <div className="max-w-6xl mx-auto flex justify-between items-center py-3 px-6">
                 {/* Logo */}
                 <Link href="/" className="text-3xl font-bold text-[#FF8C00] hover:text-[#FFA500] transition-colors">

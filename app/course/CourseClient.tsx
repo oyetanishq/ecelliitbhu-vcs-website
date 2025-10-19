@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -12,7 +11,7 @@ import RegisterButton from "./components/register-button";
 type Status = "no-session" | "unregistered" | "registered";
 
 interface CourseClientProps {
-  status: Status;
+    status: Status;
 }
 
 const weeks = [
@@ -106,203 +105,187 @@ const CourseClient: React.FC<CourseClientProps> = ({ status }) => {
         document.getElementById("course-structure")?.scrollIntoView({ behavior: "smooth" });
     };
 
-return (
-    <div className="min-h-screen hero-background">
-      {/* Hero Section */}
-      <section className="relative flex flex-col-reverse lg:flex-row items-center justify-between min-h-[90vh] px-4 md:px-8 py-12">
-        {/* Left: Week Cards (hidden on mobile) */}
-        <div className="hidden lg:block relative w-full max-w-3xl h-[70vh]">
-          {weeks.map((item) => (
-            <div
-              key={item.id}
-              className="absolute bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 w-64 transition-all duration-300 hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-border-orange-500/10"
-              style={{ ...item.position, zIndex: item.zIndex }}
-            >
-              <div className="text-xs text-white/60 mb-2 uppercase tracking-wider">{item.label}</div>
-              <div className="text-white text-3xl font-bold mb-3">Week {item.week}</div>
-              <div className="text-sm text-white/70">{item.topic}</div>
-            </div>
-          ))}
+    return (
+        <div className="min-h-screen hero-background">
+            {/* Hero Section */}
+            <section className="relative flex flex-col-reverse lg:flex-row items-center justify-between min-h-[90vh] px-4 md:px-8 pt-6 sm:pt-12 py-12">
+                {/* Left: Week Cards (hidden on mobile) */}
+                <div className="hidden lg:block relative w-full max-w-3xl h-[70vh]">
+                    {weeks.map((item) => (
+                        <div
+                            key={item.id}
+                            className="absolute bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 w-64 transition-all duration-300 hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-border-orange-500/10"
+                            style={{ ...item.position, zIndex: item.zIndex }}
+                        >
+                            <div className="text-xs text-white/60 mb-2 uppercase tracking-wider">{item.label}</div>
+                            <div className="text-white text-3xl font-bold mb-3">Week {item.week}</div>
+                            <div className="text-sm text-white/70">{item.topic}</div>
+                        </div>
+                    ))}
 
-          <div
-            className="absolute bg-black/40 backdrop-blur-md border-2 border-orange-500 rounded-2xl p-6 w-64 text-center transition-all duration-300 shadow-2xl shadow-orange-border-orange-500/20"
-            style={{ bottom: "0%", left: "50%", transform: "translateX(-50%)", zIndex: 30 }}
-          >
-            <div className="text-white text-3xl font-bold mb-2">Hackathon 🏆</div>
-            <div className="text-sm text-white/70">Final Assessment</div>
-          </div>
-        </div>
-
-        {/* Right: Hero Text */}
-        <div className="relative z-10 w-full text-center lg:text-right max-w-3xl">
-          <div className="space-y-6">
-            <div className="text-sm text-orange-400 font-medium tracking-wider">IIT BHU's Summer Course for AI</div>
-
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              The perfect start
-              <br />
-              <span className="text-orange-500">for your AI journey.</span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto lg:ml-auto">
-              The summer course on Data Science and Machine Learning offers a comprehensive blend of resources — engaging videos, blogs, weekly assignments, and a final hackathon!
-            </p>
-
-            <div className="flex flex-wrap gap-4 justify-center lg:justify-end pt-4">
-              <RegisterButton status={status} />
-              <Button size="lg" variant="outline" className="rounded-full px-8 border-foreground hover:bg-foreground/10">
-                JOIN DISCORD SERVER
-              </Button>
-            </div>
-
-            <button
-              onClick={scrollToCourseStructure}
-              className="mt-12 flex items-center gap-2 text-foreground border border-foreground rounded-full px-6 py-3 hover:bg-foreground/10 transition-all mx-auto lg:ml-auto group"
-            >
-              EXPLORE COURSE STRUCTURE
-              <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Week Cards Carousel */}
-        <div className="lg:hidden mt-12 flex justify-start gap-3 px-2 overflow-x-auto pb-4 w-full">
-          {weeks.map((item) => (
-            <div key={item.week} className="bg-card border border-border rounded-lg p-3 min-w-[140px] flex-shrink-0 text-left">
-              <div className="text-orange-400 text-sm font-bold">Week {item.week}</div>
-              <div className="text-xs text-muted-foreground mt-1">{item.label || item.topic}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Course Outline Section */}
-      <section id="course-structure" className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <div className="text-sm text-orange-400 font-medium tracking-wider mb-4">Course Outline</div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">How is the course structured?</h2>
-          <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mx-auto">
-            The 6-week course takes you from basic Python to complex neural networks.
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {courseWeeks.map((week, index) => (
-            <Card
-              key={week.week}
-              className="p-6 bg-card/50 backdrop-blur-sm border-border hover:border-orange-500 transition-all duration-300 group"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center border border-orange-500/20 group-hover:border-orange-500 transition-colors">
-                  <span className="text-orange-400 font-bold">{week.week}</span>
-                </div>
-                <div className="text-lg font-bold">Week {week.week}</div>
-              </div>
-
-              <h3 className="text-base sm:text-lg font-semibold mb-3 group-hover:text-orange-400 transition-colors">{week.title}</h3>
-              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{week.description}</p>
-
-              <div className="flex flex-wrap gap-2">
-                {week.topics.map((topic) => (
-                  <span key={topic} className="text-xs px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">
-                    {topic}
-                  </span>
-                ))}
-              </div>
-            </Card>
-          ))}
-
-          {/* Hackathon card */}
-          <Card className="p-6 bg-gradient-to-br from-orange-500/10 to-orange-500/5 backdrop-blur-sm border-orange-500 hover:shadow-[0_0_40px_hsl(188_85%_43%/0.4)] transition-all duration-300 group sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-2xl">🏆</div>
-              <div className="text-lg font-bold">Hackathon</div>
-            </div>
-            <h3 className="text-base sm:text-lg font-semibold mb-3 text-orange-500">Final Assessment</h3>
-            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-              Apply everything you’ve learned in a thrilling hackathon with real-world tasks, peer competition, and certification.
-            </p>
-          </Card>
-        </div>
-      </section>
-
-      {/* Curriculum Table */}
-<section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
-  <div className="text-center mb-12">
-    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Detailed Curriculum</h2>
-    <p className="text-muted-foreground text-base sm:text-lg">
-      Explore the daily breakdown of each week
-    </p>
-  </div>
-
-  {/* Responsive Tabs */}
-  <div className="w-full">
-    <Tabs
-      value={selectedWeek.toString()}
-      onValueChange={(v) => setSelectedWeek(parseInt(v))}
-      className="w-full"
-    >
-      <TabsList className="grid w-full grid-cols-3 sm:grid-cols-6 mb-8 bg-card border border-border overflow-x-auto scrollbar-hide">
-        {[1, 2, 3, 4, 5].map((week) => (
-          <TabsTrigger
-            key={week}
-            value={week.toString()}
-            className="data-[state=active]:bg-orange-500 data-[state=active]:text-white text-sm sm:text-base px-2 sm:px-4"
-          >
-            Week {week}
-          </TabsTrigger>
-        ))}
-        <TabsTrigger
-          value="6"
-          className="data-[state=active]:bg-orange-500 data-[state=active]:text-white text-sm sm:text-base px-2 sm:px-4"
-        >
-          Additional
-        </TabsTrigger>
-      </TabsList>
-
-      {[1, 2, 3, 4, 5].map((week) => (
-        <TabsContent key={week} value={week.toString()} className="mt-0">
-          <div className="rounded-lg border border-border overflow-hidden bg-card/50 backdrop-blur-sm">
-            {/* ✅ Make table horizontally scrollable on small screens */}
-            <div className="overflow-x-auto">
-              <Table className="min-w-[700px] sm:min-w-full text-sm sm:text-base">
-                <TableHeader>
-                  <TableRow className="bg-card hover:bg-card">
-                    <TableHead className="w-[80px] sm:w-[100px] font-bold">Day</TableHead>
-                    <TableHead className="font-bold">Contents</TableHead>
-                    <TableHead className="font-bold">Task 1</TableHead>
-                    <TableHead className="font-bold">Task 2</TableHead>
-                    <TableHead className="font-bold">Task 3</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {weeklyData[week as keyof typeof weeklyData].map((day, index) => (
-                    <TableRow
-                      key={index}
-                      className="hover:bg-orange-500/5 transition-colors"
+                    <div
+                        className="absolute bg-black/40 backdrop-blur-md border-2 border-orange-500 rounded-2xl p-6 w-64 text-center transition-all duration-300 shadow-2xl shadow-orange-border-orange-500/20"
+                        style={{ bottom: "0%", left: "50%", transform: "translateX(-50%)", zIndex: 30 }}
                     >
-                      <TableCell className="font-semibold text-orange-500 whitespace-nowrap">
-                        {day.day}
-                      </TableCell>
-                      <TableCell className="font-medium">{day.content}</TableCell>
-                      <TableCell className="text-muted-foreground">{day.task1}</TableCell>
-                      <TableCell className="text-muted-foreground">{day.task2}</TableCell>
-                      <TableCell className="text-muted-foreground">{day.task3}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          </div>
-        </TabsContent>
-      ))}
-    </Tabs>
-  </div>
-</section>
+                        <div className="text-white text-3xl font-bold mb-2">Hackathon 🏆</div>
+                        <div className="text-sm text-white/70">Final Assessment</div>
+                    </div>
+                </div>
 
-    </div>
-  );
+                {/* Right: Hero Text */}
+                <div className="relative z-10 w-full text-center lg:text-right max-w-3xl">
+                    <div className="space-y-6">
+                        <div className="text-sm text-orange-400 font-medium tracking-wider">IIT BHU's Summer Course for AI</div>
+
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                            The perfect start
+                            <br />
+                            <span className="text-orange-500">for your AI journey.</span>
+                        </h1>
+
+                        <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto lg:ml-auto">
+                            The summer course on Data Science and Machine Learning offers a comprehensive blend of resources — engaging videos, blogs, weekly assignments, and a
+                            final hackathon!
+                        </p>
+
+                        <div className="flex flex-wrap gap-4 justify-center lg:justify-end pt-4">
+                            <RegisterButton status={status} />
+                            <Button size="lg" variant="outline" className="rounded-full px-8 border-foreground hover:bg-foreground/10">
+                                JOIN DISCORD SERVER
+                            </Button>
+                        </div>
+
+                        <button
+                            onClick={scrollToCourseStructure}
+                            className="mt-12 flex items-center gap-2 text-foreground border border-foreground rounded-full px-6 py-3 hover:bg-foreground/10 transition-all mx-auto lg:ml-auto group"
+                        >
+                            EXPLORE COURSE STRUCTURE
+                            <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+                        </button>
+                    </div>
+                </div>
+
+                {/* Mobile Week Cards Carousel */}
+                <div className="lg:hidden flex justify-start gap-3 px-2 overflow-x-auto pb-4 w-full">
+                    {weeks.map((item) => (
+                        <div key={item.week} className="bg-card border border-border rounded-lg p-3 min-w-[140px] flex-shrink-0 text-left">
+                            <div className="text-orange-400 text-sm font-bold">Week {item.week}</div>
+                            <div className="text-xs text-muted-foreground mt-1">{item.label || item.topic}</div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* Course Outline Section */}
+            <section id="course-structure" className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
+                <div className="text-center mb-16">
+                    <div className="text-sm text-orange-400 font-medium tracking-wider mb-4">Course Outline</div>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">How is the course structured?</h2>
+                    <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mx-auto">The 6-week course takes you from basic Python to complex neural networks.</p>
+                </div>
+
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {courseWeeks.map((week, index) => (
+                        <Card
+                            key={week.week}
+                            className="p-6 bg-card/50 backdrop-blur-sm border-border hover:border-orange-500 transition-all duration-300 group"
+                            style={{ animationDelay: `${index * 100}ms` }}
+                        >
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center border border-orange-500/20 group-hover:border-orange-500 transition-colors">
+                                    <span className="text-orange-400 font-bold">{week.week}</span>
+                                </div>
+                                <div className="text-lg font-bold">Week {week.week}</div>
+                            </div>
+
+                            <h3 className="text-base sm:text-lg font-semibold mb-3 group-hover:text-orange-400 transition-colors">{week.title}</h3>
+                            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{week.description}</p>
+
+                            <div className="flex flex-wrap gap-2">
+                                {week.topics.map((topic) => (
+                                    <span key={topic} className="text-xs px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">
+                                        {topic}
+                                    </span>
+                                ))}
+                            </div>
+                        </Card>
+                    ))}
+
+                    {/* Hackathon card */}
+                    <Card className="p-6 bg-gradient-to-br from-orange-500/10 to-orange-500/5 backdrop-blur-sm border-orange-500 hover:shadow-[0_0_40px_hsl(188_85%_43%/0.4)] transition-all duration-300 group sm:col-span-2 lg:col-span-1">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-2xl">🏆</div>
+                            <div className="text-lg font-bold">Hackathon</div>
+                        </div>
+                        <h3 className="text-base sm:text-lg font-semibold mb-3 text-orange-500">Final Assessment</h3>
+                        <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                            Apply everything you’ve learned in a thrilling hackathon with real-world tasks, peer competition, and certification.
+                        </p>
+                    </Card>
+                </div>
+            </section>
+
+            {/* Curriculum Table */}
+            <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Detailed Curriculum</h2>
+                    <p className="text-muted-foreground text-base sm:text-lg">Explore the daily breakdown of each week</p>
+                </div>
+
+                {/* Responsive Tabs */}
+                <div className="w-full">
+                    <Tabs value={selectedWeek.toString()} onValueChange={(v) => setSelectedWeek(parseInt(v))} className="w-full">
+                        <TabsList className="grid w-full h-fit grid-cols-3 sm:grid-cols-6 mb-8 bg-card border border-border overflow-x-auto scrollbar-hide">
+                            {[1, 2, 3, 4, 5].map((week) => (
+                                <TabsTrigger
+                                    key={week}
+                                    value={week.toString()}
+                                    className="data-[state=active]:bg-orange-500 data-[state=active]:text-white text-sm sm:text-base px-2 sm:px-4"
+                                >
+                                    Week {week}
+                                </TabsTrigger>
+                            ))}
+                            <TabsTrigger value="6" className="data-[state=active]:bg-orange-500 data-[state=active]:text-white text-sm sm:text-base px-2 sm:px-4">
+                                Additional
+                            </TabsTrigger>
+                        </TabsList>
+
+                        {[1, 2, 3, 4, 5].map((week) => (
+                            <TabsContent key={week} value={week.toString()} className="mt-0">
+                                <div className="rounded-lg border border-border overflow-hidden bg-card/50 backdrop-blur-sm">
+                                    {/* ✅ Make table horizontally scrollable on small screens */}
+                                    <div className="overflow-x-auto">
+                                        <Table className="min-w-[700px] sm:min-w-full text-sm sm:text-base">
+                                            <TableHeader>
+                                                <TableRow className="bg-card hover:bg-card">
+                                                    <TableHead className="w-[80px] sm:w-[100px] font-bold">Day</TableHead>
+                                                    <TableHead className="font-bold">Contents</TableHead>
+                                                    <TableHead className="font-bold">Task 1</TableHead>
+                                                    <TableHead className="font-bold">Task 2</TableHead>
+                                                    <TableHead className="font-bold">Task 3</TableHead>
+                                                </TableRow>
+                                            </TableHeader>
+                                            <TableBody>
+                                                {weeklyData[week as keyof typeof weeklyData].map((day, index) => (
+                                                    <TableRow key={index} className="hover:bg-orange-500/5 transition-colors">
+                                                        <TableCell className="font-semibold text-orange-500 whitespace-nowrap">{day.day}</TableCell>
+                                                        <TableCell className="font-medium">{day.content}</TableCell>
+                                                        <TableCell className="text-muted-foreground">{day.task1}</TableCell>
+                                                        <TableCell className="text-muted-foreground">{day.task2}</TableCell>
+                                                        <TableCell className="text-muted-foreground">{day.task3}</TableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    </div>
+                                </div>
+                            </TabsContent>
+                        ))}
+                    </Tabs>
+                </div>
+            </section>
+        </div>
+    );
 };
 
 export default CourseClient;
