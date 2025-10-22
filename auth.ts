@@ -22,13 +22,14 @@ export const { signIn, signOut, auth, handlers } = NextAuth({
             const { data, error } = await supabase.from("users").select("email").eq("email", user.email).maybeSingle();
 
             if (!data) {
+                // create user with a default role of 'user'
                 const { error: insertError } = await supabase.from("users").insert([
                     {
                         uuid: provider_id,
                         name: user.name,
                         email: user.email,
                         image: user.image,
-                        registered_course_id: "",
+                        role: "user",
                     },
                 ]);
 
@@ -42,6 +43,17 @@ export const { signIn, signOut, auth, handlers } = NextAuth({
             }
 
             return true;
+        },
+        async session({ session }) {
+            try {
+                if (session?.user?.email) {
+                    const { data } = await supabase.from("users").select("role").eq("email", session.user.email).maybeSingle();
+                    if (data?.role) (session.user as any).role = data.role;
+                }
+            } catch (e) {
+                console.error("session callback error:", e);
+            }
+            return session;
         },
     },
 });

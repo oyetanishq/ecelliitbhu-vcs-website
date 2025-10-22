@@ -9,10 +9,11 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     const session = await auth();
     if (!session || !session.user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
-    const { data, error } = await supabase.from("users").select("registered_course_id").eq("id", session.user.id).single();
+    // look up registration by user id
+    const { data, error } = await supabase.from("registrations").select("course_id").eq("user_email", session.user.email).single();
 
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-    return NextResponse.json({ registered_course_id: data?.registered_course_id });
+    if (error && error.code !== "PGRST116") return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ registered_course_id: data?.course_id ?? null });
 }
 
 // POST: register user to a course
@@ -26,11 +27,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (!course_id) return NextResponse.json({ error: "course_id required" }, { status: 400 });
 
     // ensure user not already registered
-    const { data: existing } = await supabase.from("users").select("registered_course_id").eq("email", session.user.email).single();
+    const { data: existing } = await supabase.from("registrations").select("id").eq("user_email", session.user.email).single();
 
-    if (existing?.registered_course_id) return NextResponse.redirect("/course");
+    if (existing) return NextResponse.redirect("/course");
 
-    await supabase.from("users").update({ registered_course_id: course_id }).eq("email", session.user.email);
+    await supabase.from("registrations").insert({ user_email: session.user.email, course_id });
 
     return NextResponse.redirect(new URL("/course", req.url), { status: 303 });
 }

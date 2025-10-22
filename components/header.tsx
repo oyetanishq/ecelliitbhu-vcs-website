@@ -18,6 +18,12 @@ export default async function Header() {
                         Course
                     </Link>
 
+                    {session && session.user && (session.user as any).role === "admin" && (
+                        <Link href="/admin" className="px-4 py-2 rounded-full bg-zinc-900/70 hover:bg-[#FF8C00] hover:text-black transition-all shadow-sm">
+                            Admin
+                        </Link>
+                    )}
+
                     {session && session.user ? (
                         <form
                             action={async () => {
