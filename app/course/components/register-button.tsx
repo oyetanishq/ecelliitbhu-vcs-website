@@ -51,13 +51,12 @@ export default function RegisterButton({ status }: RegisterButtonProps) {
         );
     }
 
-    // unregistered case
+    // unregistered case - redirect to registration form
     return (
-        <form action="/api/course" method="post">
-            <input type="text" name="course_id" value="ai-course-2025" hidden />
-            <Button size="lg" type="submit" className="bg-orange-500 text-primary-foreground hover:bg-orange-500/90 rounded-full px-8">
+        <a href="/course/register">
+            <Button size="lg" className="bg-orange-500 text-primary-foreground hover:bg-orange-500/90 rounded-full px-8">
                 REGISTER FOR AI
             </Button>
-        </form>
+        </a>
     );
 }
