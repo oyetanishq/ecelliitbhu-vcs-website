@@ -58,12 +58,17 @@ body::before {
     z-index: -1;
 }
 
+/* Hide scrollbar but keep scroll functionality */
 ::-webkit-scrollbar {
-    width: 8px;
+  display: none;
 }
+html, body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
 ::-webkit-scrollbar-thumb {
-    background-color: #333;
-    border-radius: 9999px;
+    background-color: transparent;
 }
 
 a {

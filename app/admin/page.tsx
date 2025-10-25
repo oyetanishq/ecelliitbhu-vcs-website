@@ -42,20 +42,20 @@ export default async function Page() {
         <div className="p-8">
             <h1 className="text-2xl font-bold mb-6">Admin: Users & Scores</h1>
 
-            <div className="overflow-auto">
+            <div className="overflow-scroll">
                 <table className="min-w-full table-auto border-collapse">
                     <thead>
-                        <tr>
-                            <th className="border px-2 py-1 min-w-80">Name</th>
-                            <th className="border px-2 py-1 min-w-80">Email</th>
-                            <th className="border px-2 py-1 min-w-40">Role</th>
-                            <th className="border px-2 py-1 min-w-52">Registered</th>
+                        <tr className="border">
+                            <th className="border-r px-2 py-1 min-w-80">Name</th>
+                            <th className="border-r px-2 py-1 min-w-80">Email</th>
+                            <th className="border-r px-2 py-1 min-w-40">Role</th>
+                            <th className="border-r px-2 py-1 min-w-52">Registered</th>
                             {weeks.map((w) => (
-                                <th key={w} className="border px-3 py-1">
+                                <th key={w} className="border-r px-3 py-1">
                                     Week {w}
                                 </th>
                             ))}
-                            <th className="border px-2 py-1 min-w-40">Actions</th>
+                            <th className="px-2 py-1 min-w-40">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
