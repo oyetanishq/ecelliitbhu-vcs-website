@@ -26,10 +26,18 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
         email: u.email,
         name: u.name,
         image: u.image,
-        role: u.role,
+        role: u.role ?? "user",
         registered_course_id: (regs || []).find((r: any) => r.user_email === u.email)?.course_id ?? null,
         scores: (scores || []).filter((s: any) => s.user_email === u.email).reduce((acc: any, s: any) => ({ ...acc, [s.week]: s.score }), {}),
     }));
+
+    // sort admins first, then users; within groups sort by name
+    usersMap.sort((a: any, b: any) => {
+        if (a.role === b.role) return (a.name || "").localeCompare(b.name || "");
+        if (a.role === "admin") return -1;
+        if (b.role === "admin") return 1;
+        return (a.name || "").localeCompare(b.name || "");
+    });
 
     return NextResponse.json({ users: usersMap });
 }

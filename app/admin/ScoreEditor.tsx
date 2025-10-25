@@ -11,15 +11,25 @@ type Props = {
 export default function ScoreEditor({ userEmail, week, initialScore }: Props) {
     const [score, setScore] = useState<number | "">(initialScore ?? "");
     const [saving, setSaving] = useState(false);
+    const [saved, setSaved] = useState(false);
 
     const save = async () => {
         setSaving(true);
         try {
-            await fetch(`/api/admin/score`, {
+            const res = await fetch(`/api/admin/score`, {
                 method: "POST",
+                credentials: "same-origin",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ user_email: userEmail, week, score: score === "" ? null : Number(score) }),
             });
+            const j = await res.json();
+            if (!res.ok) {
+                console.error("Save score failed", j);
+                alert("Failed to save score: " + (j?.error || "unknown"));
+            } else {
+                setSaved(true);
+            }
+            setTimeout(() => setSaved(false), 2000);
             // no explicit refresh; optimistic UI assumes success
         } catch (err) {
             console.error(err);
@@ -30,9 +40,9 @@ export default function ScoreEditor({ userEmail, week, initialScore }: Props) {
 
     return (
         <div className="flex items-center gap-2">
-            <input type="number" value={score as any} onChange={(e) => setScore(e.target.value === "" ? "" : Number(e.target.value))} className="w-20 input" placeholder="score" />
-            <button onClick={save} disabled={saving} className="px-3 py-1 rounded bg-orange-500 text-white">
-                {saving ? "Saving..." : "Save"}
+            <input type="number" value={score as any} onChange={(e) => setScore(e.target.value === "" ? "" : Number(e.target.value))} className="w-24 input text-white bg-transparent outline-none" placeholder="score" />
+            <button type="button" onClick={save} disabled={saving} className="px-2 py-1 rounded bg-orange-400 text-xs text-white">
+                {saving ? "Saving..." : saved ? "Saved" : "Save"}
             </button>
         </div>
     );
