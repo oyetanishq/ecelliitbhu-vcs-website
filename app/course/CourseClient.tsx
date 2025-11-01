@@ -125,12 +125,12 @@ const CourseClient: React.FC<CourseClientProps> = ({ status }) => {
                 {/* Right: Hero Text */}
                 <div className="relative z-10 w-full text-center lg:text-right max-w-3xl">
                     <div className="space-y-6">
-                        <div className="text-sm text-orange-400 font-medium tracking-wider">IIT BHU's Summer Course for AI</div>
+                        <div className="text-sm text-orange-400 font-medium tracking-wider">IIT BHU's Summer Course for VC and Start Up</div>
 
                         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
                             The perfect start
                             <br />
-                            <span className="text-orange-500">for your AI journey.</span>
+                            <span className="text-orange-500">for your Start Up journey.</span>
                         </h1>
 
                         <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto lg:ml-auto">
@@ -171,7 +171,7 @@ const CourseClient: React.FC<CourseClientProps> = ({ status }) => {
                 <div className="text-center mb-16">
                     <div className="text-sm text-orange-400 font-medium tracking-wider mb-4">Course Outline</div>
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">How is the course structured?</h2>
-                    <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mx-auto">The 6-module course takes you from basic Python to complex neural networks.</p>
+                    <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mx-auto">The 6-module course takes you from the fundamentals of venture capital to advanced startup funding, deal structuring, and portfolio management</p>
                 </div>
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
