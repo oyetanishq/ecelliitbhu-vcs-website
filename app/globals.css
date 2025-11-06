@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom CSS Variables */
 :root {
     --background: #0a0a0a;
     --foreground: #e5e5e5;
@@ -9,19 +10,19 @@
     --overlay: rgba(0, 0, 0, 0.6);
     --font-sans: "Inter", sans-serif;
     --font-mono: "Fira Code", monospace;
-
     --orange-cus: #ffa500;
 }
 
-@theme inline {
+/* Tailwind Theme Configuration */
+@theme {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --font-sans: var(--font-sans);
     --font-mono: var(--font-mono);
-
     --color-orange-cus: var(--orange-cus);
 }
 
+/* Light Mode (Optional) */
 @media (prefers-color-scheme: light) {
     :root {
         --background: #ffffff;
@@ -30,19 +31,39 @@
     }
 }
 
+/* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
 }
 
+/* Layout Structure for Footer Positioning */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#__next {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+/* Background Images */
 .hero-background {
-    background-image: url("/hero-background.jpg"); /* Make sure the path is correct */
+    background-image: url("/hero-background.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 body {
-    background-image: url("../public/e-cell.jpeg");
+    background-image: url("/e-cell.jpeg"); /* Fixed path - removed ../public/ */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -58,26 +79,41 @@ body::before {
     z-index: -1;
 }
 
-/* Hide scrollbar but keep scroll functionality */
+/* Hide Scrollbars */
 ::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
+
 html, body {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
 }
 
 ::-webkit-scrollbar-thumb {
     background-color: transparent;
 }
 
+/* Hide scrollbar for horizontal scroll areas */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Link Styles */
 a {
     color: var(--accent);
     transition: color 0.2s ease;
 }
+
 a:hover {
-    color: #01070e;
+    color: #ffa500; /* Changed to orange for consistency */
 }
+
+/* Legacy Styles (if needed) */
 #root {
     max-width: 1280px;
     margin: 0 auto;
@@ -91,107 +127,95 @@ a:hover {
     will-change: filter;
     transition: filter 300ms;
 }
+
 .logo:hover {
     filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
     filter: drop-shadow(0 0 2em #61dafbaa);
 }
-/* Hide scrollbar for horizontal scroll areas */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
 
-
+/* Tailwind Base Layer Customization */
 @layer base {
     :root {
         --background: 0 0% 8%;
         --foreground: 0 0% 98%;
-
+        
         --card: 0 0% 12%;
         --card-foreground: 0 0% 98%;
-
+        
         --popover: 0 0% 10%;
         --popover-foreground: 0 0% 98%;
-
-        --primary: 188 85% 43%;
+        
+        --primary: 25 95% 53%; /* Orange color in HSL */
         --primary-foreground: 0 0% 10%;
-
+        
         --secondary: 0 0% 20%;
         --secondary-foreground: 0 0% 98%;
-
+        
         --muted: 0 0% 25%;
         --muted-foreground: 0 0% 60%;
-
-        --accent: 188 85% 43%;
+        
+        --accent: 25 95% 53%; /* Orange accent */
         --accent-foreground: 0 0% 10%;
-
+        
         --destructive: 0 84.2% 60.2%;
         --destructive-foreground: 0 0% 98%;
-
+        
         --border: 0 0% 20%;
         --input: 0 0% 20%;
-        --ring: 188 85% 43%;
-
+        --ring: 25 95% 53%; /* Orange ring */
+        
         --radius: 1rem;
-
-        --gradient-radial: radial-gradient(circle at 20% 50%, hsl(188 85% 43% / 0.15), transparent 50%);
-        --gradient-overlay: linear-gradient(135deg, hsl(0 0% 8%), hsl(0 0% 5%));
-
-        --shadow-cyan: 0 0 60px hsl(188 85% 43% / 0.3);
-        --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.5);
-
+        
         --sidebar-background: 0 0% 10%;
         --sidebar-foreground: 0 0% 98%;
-        --sidebar-primary: 188 85% 43%;
+        --sidebar-primary: 25 95% 53%;
         --sidebar-primary-foreground: 0 0% 10%;
         --sidebar-accent: 0 0% 15%;
         --sidebar-accent-foreground: 0 0% 98%;
         --sidebar-border: 0 0% 20%;
-        --sidebar-ring: 188 85% 43%;
+        --sidebar-ring: 25 95% 53%;
     }
 
     .dark {
         --background: 0 0% 8%;
         --foreground: 0 0% 98%;
-
+        
         --card: 0 0% 12%;
         --card-foreground: 0 0% 98%;
-
+        
         --popover: 0 0% 10%;
         --popover-foreground: 0 0% 98%;
-
-        --primary: 188 85% 43%;
+        
+        --primary: 25 95% 53%;
         --primary-foreground: 0 0% 10%;
-
+        
         --secondary: 0 0% 20%;
         --secondary-foreground: 0 0% 98%;
-
+        
         --muted: 0 0% 25%;
         --muted-foreground: 0 0% 60%;
-
-        --accent: 188 85% 43%;
+        
+        --accent: 25 95% 53%;
         --accent-foreground: 0 0% 10%;
-
+        
         --destructive: 0 62.8% 30.6%;
         --destructive-foreground: 0 0% 98%;
-
+        
         --border: 0 0% 20%;
         --input: 0 0% 20%;
-        --ring: 188 85% 43%;
-
+        --ring: 25 95% 53%;
+        
         --sidebar-background: 0 0% 10%;
         --sidebar-foreground: 0 0% 98%;
-        --sidebar-primary: 188 85% 43%;
+        --sidebar-primary: 25 95% 53%;
         --sidebar-primary-foreground: 0 0% 10%;
         --sidebar-accent: 0 0% 15%;
         --sidebar-accent-foreground: 0 0% 98%;
         --sidebar-border: 0 0% 20%;
-        --sidebar-ring: 188 85% 43%;
+        --sidebar-ring: 25 95% 53%;
     }
 }
 
@@ -201,28 +225,24 @@ a:hover {
     }
 
     body {
-        @apply bg-background text-foreground antialiased;
-        background: linear-gradient(135deg, hsl(0 0% 8%), hsl(0 0% 5%));
+        @apply text-foreground antialiased;
+        /* Removed duplicate background since it's already defined above */
         min-height: 100vh;
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    h1, h2, h3, h4, h5, h6 {
         @apply font-bold;
     }
 }
 
+/* Utility Classes */
 @layer utilities {
     .gradient-radial {
-        background: radial-gradient(circle at 20% 50%, hsl(188 85% 43% / 0.15), transparent 50%);
+        background: radial-gradient(circle at 20% 50%, hsl(25 95% 53% / 0.15), transparent 50%);
     }
 
     .text-gradient {
-        @apply bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent;
+        @apply bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent;
     }
 
     .animate-float {
@@ -230,8 +250,7 @@ a:hover {
     }
 
     @keyframes float {
-        0%,
-        100% {
+        0%, 100% {
             transform: translateY(0px);
         }
         50% {
