@@ -20,14 +20,14 @@ export default async function Page() {
 
     return (
         <div className="p-8 max-w-4xl mx-auto">
-            <h1 className="text-2xl font-bold mb-4">Course Weeks</h1>
+            <h1 className="text-2xl font-bold mb-4">Course Modules</h1>
             <div className="grid gap-4">
                 {weeks.map((w: any) => (
                     <div key={w.week} className="p-4 border rounded">
                         <div className="flex items-center justify-between">
                             <div>
                                 <div className="text-lg font-semibold">
-                                    Week {w.week}: {w.title}
+                                    Module {w.week}: {w.title}
                                 </div>
                                 <div className="text-sm text-muted-foreground">
                                     Submission Link:{" "}
