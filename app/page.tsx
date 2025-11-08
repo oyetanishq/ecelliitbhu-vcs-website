@@ -22,27 +22,22 @@ export default async function Home() {
                                 Empowering Innovators of Tomorrow
                             </h1>
                             <p className="text-gray-300 text-lg leading-relaxed max-w-md">
-                                E-Cell IIT BHU nurtures entrepreneurial spirit by organizing bootcamps, workshops, and courses designed to help students turn their ideas into impactful startups.
-                            </p>
+                                VC Scout is a structured course endorsed by leading Venture Capital firms, designed to introduce students to the world of startup investments. Learn the fundamentals of venture capital, deal sourcing, and evaluation directly from industry experts and top investors.  </p>
 
                             <div className="flex gap-4 flex-wrap pt-4">
-                                <Link 
-                                    href="/auth" 
-                                    className="px-6 py-3 bg-[#FF8C00] text-black font-semibold rounded-full hover:bg-[#FFA500] active:scale-95 transition-all shadow-lg hover:shadow-[#FF8C00]/50"
+                                <a
+                                    href="https://chat.whatsapp.com/FKpfFAEdb001JPVIeDh1J0?mode=wwt"
+                                    target="_blank" // Opens the link in a new tab
+                                    rel="noopener noreferrer" // Security best practice for new tabs
+                                   className="px-6 py-3 bg-[#FF8C00] text-black font-semibold rounded-full hover:bg-[#FFA500] hover:text-black active:scale-95 transition-all shadow-lg hover:shadow-[#FF8C00]/50"
                                 >
                                     Join Now
-                                </Link>
-                                <Link
-                                    href="/courses"
-                                    className="px-6 py-3 border-2 border-[#FF8C00] text-[#FF8C00] font-semibold rounded-full hover:bg-[#FF8C00] hover:text-black active:scale-95 transition-all shadow-lg"
-                                >
-                                    Explore Courses
-                                </Link>
+                                </a>
                             </div>
                         </div>
 
                         <div className="bg-zinc-900/80 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-zinc-800 shadow-lg shadow-black/20 hover:border-[#FF8C00]/50 transition-all duration-300">
-                            <h3 className="text-xl font-semibold mb-4 text-[#FF8C00]">Why E-Cell IIT BHU?</h3>
+                            <h3 className="text-xl font-semibold mb-4 text-[#FF8C00]">Why VC Scout IIT BHU?</h3>
                             <ul className="space-y-3 text-gray-300">
                                 <li className="flex items-start gap-3">
                                     <span className="text-[#FF8C00] font-bold text-lg">•</span>
@@ -59,38 +54,6 @@ export default async function Home() {
                             </ul>
                         </div>
                     </section>
-                </div>
-            </section>
-
-            {/* Popular Courses Section */}
-            <section className="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-8">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-[#FF8C00] border-b-2 border-[#FF8C00] pb-4 inline-block">
-                    Popular Courses
-                </h2>
-
-                <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-2">
-                    {courses.map((c) => (
-                        <article
-                            key={c.id}
-                            className="p-6 md:p-8 border border-zinc-800 rounded-2xl bg-zinc-900/80 backdrop-blur-md hover:border-[#FF8C00] hover:shadow-lg hover:shadow-[#FF8C00]/20 transition-all duration-300"
-                        >
-                            <h4 className="font-semibold text-lg mb-3 text-[#FF8C00] hover:text-[#FFA500]">
-                                {c.title}
-                            </h4>
-                            <p className="text-gray-300 mb-4 text-sm">
-                                {c.short}
-                            </p>
-                            <div className="flex items-center justify-between text-sm text-gray-400">
-                                <span>{c.duration}</span>
-                                <Link 
-                                    href={`/courses#${c.id}`} 
-                                    className="text-[#FF8C00] hover:text-[#FFA500] transition-colors font-medium"
-                                >
-                                    Details →
-                                </Link>
-                            </div>
-                        </article>
-                    ))}
                 </div>
             </section>
         </div>

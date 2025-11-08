@@ -23,7 +23,7 @@ export default function RegisterFormPage() {
                 method: "POST",
                 credentials: "same-origin",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ...formData, course_id: "ai-course-2025" }),
+                body: JSON.stringify({ ...formData, course_id: "vc-course-iit-bhu-2025" }),
             });
 
             const data = await res.json();
