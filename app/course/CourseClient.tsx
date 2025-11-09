@@ -140,9 +140,16 @@ const CourseClient: React.FC<CourseClientProps> = ({ status }) => {
 
                         <div className="flex flex-wrap gap-4 justify-center lg:justify-end pt-4">
                             <RegisterButton status={status} />
-                            <Button size="lg" variant="outline" className="rounded-full px-8 border-foreground hover:bg-foreground/10">
-                                JOIN DISCORD SERVER
-                            </Button>
+
+                            <a
+                                href="https://chat.whatsapp.com/FKpfFAEdb001JPVIeDh1J0?mode=wwt"
+                                target="_blank" // Opens the link in a new tab
+                                rel="noopener noreferrer" // Security best practice for new tabs
+                                className="px-6 py-3 bg-[#FF8C00] text-black font-semibold rounded-full hover:bg-[#FFA500] hover:text-black active:scale-95 transition-all shadow-lg hover:shadow-[#FF8C00]/50"                            >
+                                JOIN WHATSAPP GROUP
+                            </a>
+
+
                         </div>
 
                         <button
